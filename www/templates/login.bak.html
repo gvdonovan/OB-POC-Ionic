@@ -1,0 +1,27 @@
+<ion-view view-title="Login">
+    <ion-content has-header="true" padding="true">
+        <div class="row row-center">
+            <div class="col col-center" style="text-align: center;">
+                <img src="../img/optimalblue_horiz_dynamix.png " alt="Optimal Blue">
+            </div>
+            <div class="row">
+                <div class="list list-inset col">
+                    <label class="item item-input">
+                        <input type="text" placeholder="Username" ng-model="user.username">
+                    </label>
+                    <label class="item item-input">
+                        <input type="text" placeholder="Password" ng-model="user.password">
+                    </label>
+                    <div class="padding">
+                        <button class="button button-block button-positive" ng-click="login(user)">
+                            Submit
+                        </button>
+                        <p class="text-center">
+                            <a href="#/forgot-password">Forgot password</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

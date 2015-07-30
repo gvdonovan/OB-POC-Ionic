@@ -1,0 +1,23 @@
+<ion-view view-title="Search Results">
+    <ion-content>
+        <ion-list>
+
+            <div class="item item-divider">
+                30 Year Conforming Fixed
+            </div>
+
+            <ion-item ng-repeat="r in results" ui-sref="tab.search-result-details">
+                <div class="row">
+                    <div class="col">{{r.rate}}</div>
+                    <div class="col">1875</div>
+                    <div class="col">3.996</div>
+                    <div class="col">360</div>
+                    <div class="col">8575</div>
+                    <div class="col">950</div>
+                </div>
+
+            </ion-item>
+
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -1,9 +1,8 @@
 .idea
 .git
-bower_components
-node_modules
-www/lib
-resources
-plugins
-platforms
 hooks
+node_modules
+resources
+platforms
+plugins
+www/lib

@@ -1,58 +1,29 @@
-<style>
-    .no-padding {
-        padding: 0px !important;
-    }
-</style>
-
-<ion-view view-title="Search Results">
+<ion-view view-title="Results">
     <ion-content>
         <ion-list>
 
-            <div class="item item-divider">
-                30 Year Conforming Fixed
+            <div class="item item-stable item-divider">
+                <b>30 Year Conforming Fixed</b>
             </div>
-            <!--<ion-item class="item item-icon-right no-padding">-->
-                <!--<div class="row no-padding">-->
-                    <!--<div class="col col-90">-->
-                        <!--<div class="row">-->
-                            <!--<div class="col text-left˙">Rate</div>-->
-                            <!--<div class="col text-left">Points</div>-->
-                            <!--<div class="col text-left">APR</div>-->
-                            <!--<div class="col text-left">Term</div>-->
-                            <!--<div class="col text-left">Closing</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="col">&nbsp;</div>-->
-                <!--</div>-->
-            <!--</ion-item>-->
 
-            <ion-item class="item item-icon-right no-padding" ng-repeat="r in results" ui-sref="tab.search-result-details">
-                <!--<div class="row no-padding">-->
-                    <!--<div class="col col-90">-->
-                        <!--<div class="row">-->
-                            <!--<div class="col text-left˙">Rate</div>-->
-                            <!--<div class="col text-left">Points</div>-->
-                            <!--<div class="col text-left">APR</div>-->
-                            <!--<div class="col text-left">Term</div>-->
-                            <!--<div class="col text-left">Closing</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="col">&nbsp;</div>-->
-                <!--</div>-->
-                <div class="row no-padding">
-                    <div class="col col-90">
-                        <div class="row no-padding">
-                            <div class="col text-left">{{r.rate}}</div>
-                            <div class="col text-left">1800</div>
-                            <div class="col text-left">3.995</div>
-                            <div class="col text-left">360</div>
-                            <div class="col text-left">8950</div>
-                        </div>
+            <div class="item item-light col-header item-icon-right">
+                <div class="flex-container wrap">
+                    <div ng-repeat="column in data.columns" ng-click="sortBy(column.id)">
+                        <div class="column">{{column.name}}&nbsp;</div>
                     </div>
-                    <div class="col"><i class="icon ion-chevron-right icon-accessory"></i></div>
                 </div>
+            </div>
 
-            </ion-item>
+            <div class="item col-detail item-icon-right"
+                 ng-repeat="item in data.items | orderBy:sortData:data.sortReverse " ui-sref="tab.search-result-details">
+                <div class="flex-container wrap">
+                    <div ng-repeat="column in data.columns">
+                        <div class="column">{{item[column.id]}}&nbsp;</div>
+                    </div>
+                </div>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </div>
+
 
         </ion-list>
     </ion-content>

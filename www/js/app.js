@@ -103,7 +103,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           controller: 'AccountCtrl'
         }
       }
-  });
+    })
+
+    .state('accordion', {
+        url: '/accordion',
+        templateUrl: 'templates/accordion.html',
+        controller: 'AccordionCtrl'
+    });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');

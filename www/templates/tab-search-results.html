@@ -2,9 +2,10 @@
     <ion-content>
         <ion-list>
 
-            <div class="item item-stable item-divider">
-                <b>30 Year Conforming Fixed</b>
+            <div class="item item-stable item-divider" ng-repeat="group in data.groups">
+                <b>{{group.name}}</b>
             </div>
+
 
             <div class="item item-light col-header item-icon-right">
                 <div class="flex-container wrap">
@@ -15,7 +16,7 @@
             </div>
 
             <div class="item col-detail item-icon-right"
-                 ng-repeat="item in data.items | orderBy:sortData:data.sortReverse " ui-sref="tab.search-result-details">
+                 ng-repeat="item in data.items" ui-sref="tab.result-detail({resultId: item.id})">
                 <div class="flex-container wrap">
                     <div ng-repeat="column in data.columns">
                         <div class="column">{{item[column.id]}}&nbsp;</div>

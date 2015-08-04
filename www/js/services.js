@@ -1,54 +1,49 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
-  // Might use a resource here that returns a JSON array
+.factory('dataService', function() {
 
-  // Some fake testing data
-  var chats = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    rate: '3.75',
-    lastText: 'You on your way?',
-    face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    rate: '3.85',
-    lastText: 'Hey, it\'s me',
-    face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460'
-  }, {
-    id: 2,
-    name: 'Adam Bradleyson',
-    rate: '3.875',
-    lastText: 'I should buy a boat',
-    face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg'
-  }, {
-    id: 3,
-    name: 'Perry Governor',
-    rate: '4.00',
-    lastText: 'Look at my mukluks!',
-    face: 'https://pbs.twimg.com/profile_images/598205061232103424/3j5HUXMY.png'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    rate: '4.25',
-    lastText: 'This is wicked good ice cream.',
-    face: 'https://pbs.twimg.com/profile_images/578237281384841216/R3ae1n61.png'
-  }];
+  var groups = [
+    {"id": "1", "name": "30 Year Peforming Fixed"},
+    {"id": "2", "name": "30 Year FHA"},
+    {"id": "3", "name": "15 Year Peforming Fixed"}
+  ];
+
+  var columns =  [
+    {"id":"rate","name":"Rate"},
+    {"id":"points","name":"Points"},
+    {"id":"apr","name":"APR"},
+    {"id":"months","name":"Term"},
+    {"id":"closing","name":"Closing"},
+    {"id":"rebate","name":"Rebate"}];
+
+  var products = [
+    {"groupId":"1", "groupName":"30 Year Performing Fixed", "id":1, "rebate":"$1000","points":"1","rate":"3.500","closing":"3","months":"360","apr":"3.86"},
+    {"groupId":"1", "groupName":"30 Year Performing Fixed", "id":2, "rebate":"$1000","points":"1","rate":"3.500","closing":"13","months":"360","apr":"3.86"},
+    {"groupId":"1", "groupName":"30 Year Performing Fixed", "id":3, "rebate":"$1000","points":"1","rate":"3.500","closing":"12","months":"360","apr":"3.86"},
+    {"groupId":"1", "groupName":"30 Year Performing Fixed", "id":4, "rebate":"$1000","points":"1","rate":"3.500","closing":"27","months":"360","apr":"3.86 "},
+    {"groupId":"1", "groupName":"30 Year Performing Fixed", "id":5, "rebate":"$1000","points":"1","rate":"3.500","closing":"9","months":"360","apr":"3.86"},
+    {"groupId":"1", "groupName":"30 Year Performing Fixed", "id":6, "rebate":"$1000","points":"1","rate":"3.500","closing":"12","months":"360","apr":"3.86"},
+    {"groupId":"1", "groupName":"30 Year Performing Fixed", "id":7, "rebate":"$1000","points":"1","rate":"3.500","closing":"13","months":"360","apr":"3.86"},
+    {"groupId":"1", "groupName":"30 Year Performing Fixed", "id":8, "rebate":"$1000","points":"1","rate":"3.500","closing":"11","months":"360","apr":"3.86"},
+    {"groupId":"1", "groupName":"30 Year Performing Fixed", "id":9, "rebate":"$1000","points":"1","rate":"3.500","closing":"29","months":"360","apr":"3.86"},
+    {"groupId":"2", "groupName":"30 Year FHA", "id":10, "rebate":"$1000","points":"1","rate":"3.500","closing":"7","months":"360","apr":"3.86"},
+    {"groupId":"2", "groupName":"30 Year FHA", "id":11, "rebate":"$1000","points":"1","rate":"3.500","closing":"6","months":"360","apr":"3.86"},
+    {"groupId":"2", "groupName":"30 Year FHA", "id":12, "rebate":"$1000","points":"2","rate":"3.500","closing":"18","months":"360","apr":"3.86"},
+    {"groupId":"3", "groupName":"15 Year Performing Fixed", "id":13, "rebate":"$1000","points":"1","rate":"3.500","closing":"16","months":"360","apr":"3.86"},
+    {"groupId":"3", "groupName":"15 Year Performing Fixed", "id":14, "rebate":"$1000","points":"1","rate":"3.500","closing":"31","months":"360","apr":"3.86"}];
+
 
   return {
-    all: function() {
-      return chats;
-    },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
-    },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
-        }
-      }
+    columns: columns,
+    groups: groups,
+    getData: function() { return products; },
+    getProducts: function() {return _.groupBy(products, "groupId")},
+    get: function(id) {
+      //for (var i = 0; i < chats.length; i++) {
+      //  if (chats[i].id === parseInt(chatId)) {
+      //    return chats[i];
+      //  }
+      //}
       return null;
     }
   };

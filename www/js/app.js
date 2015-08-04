@@ -59,39 +59,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
-    .state('tab.search-results', {
+    .state('tab.results', {
       url: '/results',
       views: {
-        'tab-dash': {
+        'tab-search': {
           templateUrl: 'templates/tab-search-results.html',
           controller: 'SearchResultsCtrl'
         }
       }
     })
-    .state('tab.search-result-details', {
+    .state('tab.result-detail', {
       url: '/results/:resultId',
       views: {
-        'tab-dash': {
+        'tab-search': {
           templateUrl: 'templates/tab-search-result-details.html',
           controller: 'SearchResultDetailsCtrl'
-        }
-      }
-    })
-    .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
         }
       }
     })

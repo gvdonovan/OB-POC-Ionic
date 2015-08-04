@@ -1,67 +1,296 @@
 angular.module('starter.controllers', [])
 
-  .controller('LoginCtrl', function($scope, $state) {
-    $scope.login = function(user) {
-      console.log('Login', user);
-      $state.go('tab.dash');
-    };
-  })
-  .controller('DashCtrl', function($scope) {})
+    .controller('LoginCtrl', function ($scope, $state) {
+        $scope.login = function (user) {
+            console.log('Login', user);
+            $state.go('tab.dash');
+        };
+    })
+    .controller('DashCtrl', function ($scope) {
+    })
 
-  .controller('SearchCtrl', function($scope, $state) {
-    $scope.search = function() {
-      $state.go('tab.results');
-    };
-  })
+    .controller('SearchCtrl', function ($scope, $state) {
+      $scope.showError = true;
 
-  .controller('SearchResultsCtrl', function($scope, dataService) {
-    $scope.data = {};
+      $scope.formFields = [
+        {
+          key: 'occupancy',
+          type: 'select',
+          templateOptions: {
+            label: 'Occupancy',
+            options: [
+              {
+                label: 'Owner Occupied',
+                id: 'owner_occupied',
+                val: '1'
+              },
+              {
+                label: 'Other',
+                id: 'other',
+                val: '1'
+              },
+              {
+                label: 'Biff',
+                id: 'biff',
+                val: '2'
+              },
+            ],
+            "groupProp": 'val',
+            "valueProp": 'id',
+            "labelProp": 'label'
+          }
+        },
+        {
+          key: 'propertyType',
+          type: 'select',
+          templateOptions: {
+            label: 'Property Type',
+            options: [
+              {
+                label: 'Single Family',
+                value: 'single_family'
+              },
+              {
+                label: 'PUD',
+                value: 'pud'
+              },
+              {
+                label: 'Multi-Family',
+                value: 'multi_family'
+              },
+              {
+                label: 'Manufactured / Single Wide',
+                value: 'manufactured_single_wide'
+              },
+              {
+                label: 'Manufactured / Double Wide',
+                value: 'manufactured_double_wide'
+              },
+              {
+                label: 'Timeshare',
+                value: 'timeshare'
+              },
+              {
+                label: 'Condotel',
+                value: 'condotel'
+              },
+              {
+                label: 'Non-warrantable Condo',
+                value: 'non_warrantable_condo'
+              },
+              {
+                label: 'Modular',
+                value: 'modular'
+              },
+            ],
+            valueProp: 'value',
+            labelProp: 'label',
+            required: true
+          },
+          validators: {
+            message: '$viewValue + " is not a valid IP Address"'
+          }
+        },
+        {
+          key: 'text',
+          type: 'input',
+          templateOptions: {
+            type: 'text',
+            placeholder: 'Formly is terrific!',
+            required: true
+          }
+        },
+        {
+          key: 'story',
+          type: 'textarea',
+          templateOptions: {
+            placeholder: 'It allows you to build and maintain your forms with the ease of JavaScript :-)'
+          }
+        },
+        {
+          key: 'toggle',
+          type: 'toggle',
+          templateOptions: {
+            label: 'Remember Me?',
+            toggleClass: "assertive"
+          }
+        },
+        {
+          key: 'slider',
+          type: 'range',
+          templateOptions: {
+            label: 'Scale',
+            rangeClass: "calm",
+            min: '0',
+            max: '100',
+            step: '5',
+            value: '25',
+            minIcon: 'ion-volume-low',
+            maxIcon: 'ion-volume-high'
 
-    var columns = dataService.columns;
-    $scope.data.columns = columns;
+          }
+        }];
+      $scope.formData = {};
 
-    var items = dataService.getData();
-    $scope.data.items = items;
-
-    var groups = dataService.groups;
-    $scope.data.groups = groups;
-
-    var products = dataService.getProducts();
-    $scope.data.products = products;
-  })
-
-  .controller('SearchResultDetailsCtrl', function($scope, $stateParams) {
-      var title = $stateParams.resultId;
-      $scope.title = "Id = " + title;
-  })
-
-  .controller('AccountCtrl', function($scope) {
-    $scope.settings = {
-      enableFriends: true
-    }
-  })
-
-  .controller('AccordionCtrl', function($scope) {
-    $scope.groups = [];
-    for (var i=0; i<10; i++) {
-      $scope.groups[i] = {
-        name: i,
-        items: []
+      $scope.logForm = function(data){
+        console.warn(data);
       };
-      for (var j=0; j<3; j++) {
-        $scope.groups[i].items.push(i + '-' + j);
-      }
-    }
 
-    $scope.toggleGroup = function(group) {
-      if ($scope.isGroupShown(group)) {
-        $scope.shownGroup = null;
-      } else {
-        $scope.shownGroup = group;
-      }
-    };
-    $scope.isGroupShown = function(group) {
-      return $scope.shownGroup === group;
-    };
-  });
+
+      $scope.search = function () {
+        $state.go('tab.search-results');
+      };
+    })
+
+    .controller('SearchResultsCtrl', function ($scope, Chats) {
+        $scope.data = {};
+        $scope.data.columns = [{"id": "1453", "name": "Rate"}, {"id": "1355", "name": "Points"}, {
+            "id": "0393",
+            "name": "APR"
+        }, {"id": "3932", "name": "Term"}, {"id": "2939", "name": "Closing"}, {"id": "1234", "name": "Rebate"}];
+        $scope.data.items = [{
+            "1234": "Pink",
+            "1355": "21 oz.",
+            "1453": "ea",
+            "2939": "3 in.",
+            "3932": "29  in.",
+            "0393": "12  in."
+        }, {
+            "1234": "Black",
+            "1355": "26 oz.",
+            "1453": "irure",
+            "2939": "13 in.",
+            "3932": "9  in.",
+            "0393": "19  in."
+        }, {
+            "1234": "Yellow",
+            "1355": "1 oz.",
+            "1453": "laborum",
+            "2939": "12 in.",
+            "3932": "27  in.",
+            "0393": "1  in."
+        }, {
+            "1234": "Gold",
+            "1355": "19 oz.",
+            "1453": "magna",
+            "2939": "27 in.",
+            "3932": "23  in.",
+            "0393": "22  in."
+        }, {
+            "1234": "Purple",
+            "1355": "24 oz.",
+            "1453": "in",
+            "2939": "9 in.",
+            "3932": "23  in.",
+            "0393": "25  in."
+        }, {
+            "1234": "Silver",
+            "1355": "32 oz.",
+            "1453": "labore",
+            "2939": "12 in.",
+            "3932": "22  in.",
+            "0393": "12  in."
+        }, {
+            "1234": "Brown",
+            "1355": "7 oz.",
+            "1453": "reprehenderit",
+            "2939": "13 in.",
+            "3932": "30  in.",
+            "0393": "1  in."
+        }, {
+            "1234": "Gold",
+            "1355": "6 oz.",
+            "1453": "culpa",
+            "2939": "11 in.",
+            "3932": "31  in.",
+            "0393": "16  in."
+        }, {
+            "1234": "Pink",
+            "1355": "19 oz.",
+            "1453": "est",
+            "2939": "29 in.",
+            "3932": "29  in.",
+            "0393": "24  in."
+        }, {
+            "1234": "Silver",
+            "1355": "10 oz.",
+            "1453": "adipisicing",
+            "2939": "7 in.",
+            "3932": "0  in.",
+            "0393": "23  in."
+        }, {
+            "1234": "Brown",
+            "1355": "15 oz.",
+            "1453": "et",
+            "2939": "6 in.",
+            "3932": "0  in.",
+            "0393": "4  in."
+        }, {
+            "1234": "Purple",
+            "1355": "27 oz.",
+            "1453": "fugiat",
+            "2939": "18 in.",
+            "3932": "21  in.",
+            "0393": "27  in."
+        }, {
+            "1234": "Red",
+            "1355": "23 oz.",
+            "1453": "irure",
+            "2939": "16 in.",
+            "3932": "21  in.",
+            "0393": "22  in."
+        }, {"1234": "Brown", "1355": "18 oz.", "1453": "eu", "2939": "31 in.", "3932": "28  in.", "0393": "11  in."}];
+    })
+
+    .controller('SearchResultDetailsCtrl', function ($scope) {
+    })
+
+    .controller('ChatsCtrl', function ($scope, Chats) {
+        // With the new view caching in Ionic, Controllers are only called
+        // when they are recreated or on app start, instead of every page change.
+        // To listen for when this page is active (for example, to refresh data),
+        // listen for the $ionicView.enter event:
+        //
+        //$scope.$on('$ionicView.enter', function(e) {
+        //});
+
+        $scope.chats = Chats.all();
+        $scope.remove = function (chat) {
+            Chats.remove(chat);
+        };
+    })
+
+    .controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
+        $scope.chat = Chats.get($stateParams.chatId);
+    })
+
+    .controller('AccountCtrl', function ($scope) {
+        $scope.settings = {
+            enableFriends: true
+        }
+    })
+
+    .controller('AccordionCtrl', function ($scope) {
+        $scope.groups = [];
+        for (var i = 0; i < 10; i++) {
+            $scope.groups[i] = {
+                name: i,
+                items: []
+            };
+            for (var j = 0; j < 3; j++) {
+                $scope.groups[i].items.push(i + '-' + j);
+            }
+        }
+
+        $scope.toggleGroup = function (group) {
+            if ($scope.isGroupShown(group)) {
+                $scope.shownGroup = null;
+            } else {
+                $scope.shownGroup = group;
+            }
+        };
+        $scope.isGroupShown = function (group) {
+            return $scope.shownGroup === group;
+        };
+    });
 

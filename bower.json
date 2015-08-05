@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "ionicons": "~2.0.1",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
     "ionicons": "~2.0.1",
     "api-check": "~7.5.0",
     "angular-formly": "~6.23.0",

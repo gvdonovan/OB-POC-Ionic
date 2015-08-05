@@ -6,6 +6,7 @@ angular.module('starter.controllers', [])
             $state.go('tab.dash');
         };
     })
+
     .controller('DashCtrl', function ($scope) {
     })
 
@@ -136,9 +137,8 @@ angular.module('starter.controllers', [])
         console.warn(data);
       };
 
-
       $scope.search = function () {
-        $state.go('tab.search-results');
+        $state.go('tab.results');
       };
     })
 

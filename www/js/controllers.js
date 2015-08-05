@@ -28,6 +28,19 @@ angular.module('starter.controllers', [])
 
     var products = dataService.getProducts();
     $scope.data.products = products;
+
+
+    $scope.toggleGroup = function(group) {
+      if ($scope.isGroupShown(group)) {
+        $scope.shownGroup = null;
+      } else {
+        $scope.shownGroup = group;
+      }
+    };
+    $scope.isGroupShown = function(group) {
+        return $scope.shownGroup === group;
+      };
+
   })
 
   .controller('SearchResultDetailsCtrl', function($scope, $stateParams) {

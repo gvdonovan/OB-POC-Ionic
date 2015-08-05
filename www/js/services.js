@@ -37,7 +37,14 @@ angular.module('starter.services', [])
     columns: columns,
     groups: groups,
     getData: function() { return products; },
-    getProducts: function() {return _.groupBy(products, "groupId")},
+    //getProducts: function() {return _.chain(products).groupBy("groupName").sortBy("groupId")},
+    //getProducts: function() {return _.chain(products).groupBy("groupName").sortBy("groupId").map(function(value))},
+    getProducts: function() {return _.chain(products).groupBy("groupName").map(function (data, key){
+      return {
+        group: key,
+        products: data
+      }
+    }).value()},
     get: function(id) {
       //for (var i = 0; i < chats.length; i++) {
       //  if (chats[i].id === parseInt(chatId)) {

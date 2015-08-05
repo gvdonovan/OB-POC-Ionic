@@ -1,12 +1,59 @@
+<style>
+
+    .list .item.item-accordion {
+        line-height: 38px;
+        padding-top: 0;
+        padding-bottom: 0;
+        transition: 0.09s all linear;
+    }
+    .list .item.item-accordion.ng-hide {
+        line-height: 0px;
+    }
+    .list .item.item-accordion.ng-hide-add,
+    .list .item.item-accordion.ng-hide-remove {
+        display: block !important;
+    }
+</style>
+
 <ion-view view-title="Results">
     <ion-content>
         <ion-list>
 
-            <div class="item item-stable item-divider" ng-repeat="group in data.groups">
-                <b>{{group.name}}</b>
+            <div ng-repeat="group in data.products">
+
+                <ion-item class="item-stable"
+                          ng-click="toggleGroup(group)"
+                          ng-class="{active: isGroupShown(group)}">
+                    <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
+                    &nbsp;
+                    {{group.group}}&nbsp;({{group.products.length + 1}})
+                </ion-item>
+
+                <ion-item class="item-accordion" ng-show="isGroupShown(group)">
+
+                    <div class="item item-light col-header item-icon-right">
+                        <div class="flex-container wrap">
+                            <div ng-repeat="column in data.columns" ng-click="sortBy(column.id)">
+                                <div class="column">{{column.name}}&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item col-detail item-icon-right"
+                         ng-repeat="item in group.products" ui-sref="tab.result-detail({resultId: item.id})">
+                        <div class="flex-container wrap">
+                            <div ng-repeat="column in data.columns">
+                                <div class="column">{{item[column.id]}}&nbsp;</div>
+                            </div>
+                        </div>
+                        <i class="icon ion-chevron-right icon-accessory"></i>
+                    </div>
+
+                </ion-item>
             </div>
 
 
+            <div class="item"><p>Should Look like below...</p></div>
             <div class="item item-light col-header item-icon-right">
                 <div class="flex-container wrap">
                     <div ng-repeat="column in data.columns" ng-click="sortBy(column.id)">
@@ -16,7 +63,7 @@
             </div>
 
             <div class="item col-detail item-icon-right"
-                 ng-repeat="item in data.items" ui-sref="tab.result-detail({resultId: item.id})">
+                 ng-repeat="item in data.items" >
                 <div class="flex-container wrap">
                     <div ng-repeat="column in data.columns">
                         <div class="column">{{item[column.id]}}&nbsp;</div>

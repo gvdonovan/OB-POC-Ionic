@@ -1,7 +1,8 @@
 <style>
 
     .list .item.item-accordion {
-        line-height: 38px;
+        padding-left: 0;
+        padding-right: 0;
         padding-top: 0;
         padding-bottom: 0;
         transition: 0.09s all linear;
@@ -13,6 +14,12 @@
     .list .item.item-accordion.ng-hide-remove {
         display: block !important;
     }
+
+    .list {
+        border-left: none;
+        border-right: none;
+    }
+
 </style>
 
 <ion-view view-title="Results">
@@ -51,27 +58,6 @@
 
                 </ion-item>
             </div>
-
-
-            <div class="item"><p>Should Look like below...</p></div>
-            <div class="item item-light col-header item-icon-right">
-                <div class="flex-container wrap">
-                    <div ng-repeat="column in data.columns" ng-click="sortBy(column.id)">
-                        <div class="column">{{column.name}}&nbsp;</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="item col-detail item-icon-right"
-                 ng-repeat="item in data.items" >
-                <div class="flex-container wrap">
-                    <div ng-repeat="column in data.columns">
-                        <div class="column">{{item[column.id]}}&nbsp;</div>
-                    </div>
-                </div>
-                <i class="icon ion-chevron-right icon-accessory"></i>
-            </div>
-
 
         </ion-list>
     </ion-content>

@@ -14,13 +14,31 @@
     .list .item.item-accordion.ng-hide-remove {
         display: block !important;
     }
+    div.spinner {
+        margin: auto;
+        position: absolute;
+        top: 0; left: 0; bottom: 0; right: 0;
+        height: 85px;
+        text-align: center;
+    }
+
+    .spinner svg {
+        width: 19% !important;
+        height: 85px !important;
+    }
 
 </style>
 
 <ion-view view-title="Results">
-    <ion-content>
-        <ion-list>
 
+    <ion-content scroll="false" ng-show="isLoading">
+        <div class="spinner">
+            <ion-spinner></ion-spinner>
+        </div>
+    </ion-content>
+
+    <ion-content scroll="true" ng-hide="isLoading">
+        <ion-list>
             <div ng-repeat="group in data.products">
 
                 <ion-item class="item-stable"
@@ -50,7 +68,6 @@
                         </div>
                         <i class="icon ion-chevron-right icon-accessory"></i>
                     </div>
-
                 </ion-item>
             </div>
 

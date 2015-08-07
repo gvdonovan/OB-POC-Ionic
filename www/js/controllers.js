@@ -142,8 +142,13 @@ angular.module('starter.controllers', [])
       };
     })
 
-    .controller('SearchResultsCtrl', function ($scope, dataService) {
+    .controller('SearchResultsCtrl', function ($scope, $timeout, dataService) {
         $scope.data = {};
+        $scope.isLoading = true;
+
+        $timeout(function () {
+            $scope.isLoading = false;
+        }, 1000);
 
         var columns = dataService.columns;
         $scope.data.columns = columns;

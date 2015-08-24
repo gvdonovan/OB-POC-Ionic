@@ -19,4 +19,16 @@ angular.module('OBApp', [
         StatusBar.styleLightContent();
       }
     });
+  })
+  .run(function ($rootScope, $state, authService) {
+  $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {
+    if ('data' in next && 'authenticationNeeded' in next.data) {
+      if (!authService.isAuthenticated()) {
+        if (next.name !== 'login') {
+          event.preventDefault();
+          $state.go('login');
+        }
+      }
+    }
   });
+});

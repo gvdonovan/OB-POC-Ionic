@@ -5,24 +5,21 @@
     .module('OBApp')
     .controller('AccountCtrl', AccountCtrl);
 
-  AccountCtrl.$inject = ['$state'];
+  AccountCtrl.$inject = ['$state', 'authService'];
 
   /* @ngInject */
-  function AccountCtrl($state) {
+  function AccountCtrl($state, authService) {
     /* jshint validthis: true */
     var vm = this;
-
-    vm.activate = activate;
+    
     vm.title = '';
-
-    activate();
-
-    ////////////////
-
-    function activate() {
-    }
-
-
+    
+    vm.logout = logout;
+    
+    function logout(){
+      authService.logout();
+      $state.go('login'); 
+    };
   }
 
 })();

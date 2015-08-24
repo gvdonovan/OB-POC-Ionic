@@ -20,7 +20,10 @@ angular
       .state('tab', {
         url: '/tab',
         abstract: true,
-        templateUrl: 'templates/tabs.html'
+        templateUrl: 'templates/tabs.html',
+        data: {
+          authenticationNeeded: true
+        }
       })
       .state('tab.dash', {
         url: '/dash',
@@ -63,7 +66,7 @@ angular
         views: {
           'tab-account': {
             templateUrl: 'templates/tab-account.html',
-            controller: 'AccountCtrl as account'
+            controller: 'AccountCtrl as vm'
           }
         }
       });

@@ -4,18 +4,17 @@
         <div style="text-align: center;" class="padding">
             <img src="img/optimalblue_horiz_dynamix.png " alt="Optimal Blue">
         </div>
-
         <div class="list list-inset col col-center ">
             <label class="item item-input">
-                <input type="text" placeholder="Username" ng-model="user.username">
+                <input type="text" placeholder="Username" ng-model="vm.user.username">
             </label>
             <label class="item item-input">
-                <input type="text" placeholder="Password" ng-model="user.password">
+                <input type="text" placeholder="Password" ng-model="vm.user.password">
             </label>
 
             <br>
             <div class="padding">
-                <button class="button button-block button-royal" ng-click="login(user)">
+                <button class="button button-block button-royal" ng-click="vm.login(vm.user)">
                     Submit
                 </button>
                 <p class="text-center">

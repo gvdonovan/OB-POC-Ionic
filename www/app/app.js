@@ -2,7 +2,8 @@
 
 angular.module('OBApp', [
   'ionic',
-  'formlyIonic'
+  'formlyIonic',
+  'ngCordova'
 ])
 
   .run(function($ionicPlatform) {

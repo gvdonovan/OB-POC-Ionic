@@ -5,10 +5,10 @@
     .module('OBApp')
     .controller('LoginCtrl', LoginCtrl);
 
-  LoginCtrl.$inject = ['$state','$ionicLoading', '$ionicPopup', 'userService', 'authService'];
+  LoginCtrl.$inject = ['$state','$ionicLoading', '$ionicPopup', 'userService', 'authService', '$cordovaContacts'];
 
   /* @ngInject */
-  function LoginCtrl($state, $ionicLoading,$ionicPopup, userService, authService) {
+  function LoginCtrl($state, $ionicLoading,$ionicPopup, userService, authService, $cordovaContacts) {
     /* jshint validthis: true */
     var vm = this;
 
@@ -16,6 +16,7 @@
     vm.user = {};
 
     vm.login = login;
+    vm.pickContacts = pickContacts;
     
     function login(){
       $ionicLoading.show({
@@ -39,6 +40,12 @@
             });
         }
         
+      });
+    }
+    
+    function pickContacts(){
+      $cordovaContacts.pickContact().then(function (contactPicked) {
+        console.log(contactPicked);
       });
     }
   }
